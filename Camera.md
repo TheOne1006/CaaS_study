@@ -1,4 +1,4 @@
-## 属于解释
+## mesos 名词 解释
 
 1. Mesos-master: Mesos master，主要负责管理各个framework和slave，并将slave上的资源分配给各个framework
 2. Mesos-slave: Mesos slave，负责管理本节点上的各个mesos-task，比如: 为各个executor分配资源
