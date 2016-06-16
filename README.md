@@ -61,20 +61,31 @@ MESOS:
 
 ![](images/mesos_framework.jpg)
 
+mesos 实现了两级调度架构?
+
 - Master 守护进程: 管理集群中所有节点上运行的Slave守护进程(蓝色)
-- Framework 包括调度和执行器（红色虚线)
+  - 集群由物理(虚拟)服务组成,用于运行应用程序的任务.如 hadoop
+  - Master 任务1: 协调 __全部__ 的 Slave,
+  - Master 任务2: 确定每个节点的可用资源,聚合计算跨节点所有可用资源报告,
+  - Master 任务3: 并且向注册到 Master 的 Framework (这里应该是指 scheduler??) 发出资源邀约. framework 可以根据应用的需求 选择/拒绝 master 的资源邀约.
+  - Master 任务4: 一旦(framewoke scheduler) 接收邀约, Master 即协调 Slave 和 Framework 调度参与节点上任务,并在容器中执行(??), 以使多中类型的任务,可以在同一节点运行
+- Framework 包括调度和执行器（红色虚线) 第二级
+  - 每个节点上都会运行执行器
+  - mesos 能和不同类型的 framework 通信(调度 schedule /执行 execute).
+  - 每种 Framework 有响应的应用集群管理
 
 #### Mesos 工作流程
 
 ![](images/mesos_work_flow.jpg)
 
 - 第一步,Slave1 向 Master 汇报可用资源(如4cpu, 4gb 内存).
-- 然后, Master 触发分配侧率模块
+- 然后, Master 触发分配策略模块
 - 第二步, Master 向Framework1 发送 __资源邀约__,描述可用资源(如:s1 上的可用资源信息)
 - 第三步, Framework1 调度器 响应了 Master,需要在Slave上运行两个任务,(task1 2cpu 1gb , task2 1cpu 2gb)
 - 第四部, Master 向 Slave1 发布任务,分配资源给 __任务执行器__
 - 接下来,由这两个执行器执行这些任务.
 - 剩余的资源分配给其他的 framework 需要的时候使用。
+
 
 #### Mesos 数据持久化
 
@@ -103,12 +114,12 @@ mesos提供了一下几种方式实现数据持久化:
 
 - Master
     - 是整个 Mesos 集群的大脑,
-    - 采用热备份 ?
+    - 采用热备份
     - 一般为1个master节点 和 多个备用节点,由 zookeeper监控
     - 当一个 master 出现故障时, zookeeper 会根据领导者选举算法,选择一个新的 master 节点,
     - 当一个新的 master 当选后, zookeeper 会通知 Framework 和 slave 节点到新的 master 上注册
 - Framework
-    - 调度器的容错: framework 调度器 通过 framework 将调度器注册多份到 Master
+    - 调度器的容错: framework 调度器 通过 framework 将调度器注册多份 Master 上
     - 当一个调度器故障的使用, master 会通知另一个调度器来接管。
     - 而 Framework 自身需要负责实现，调取器共享状态的机制
 - Slave
