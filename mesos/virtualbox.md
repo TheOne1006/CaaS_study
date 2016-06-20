@@ -13,3 +13,12 @@
 2. vboxnetN
 3. PCnet-FAST III
 4. 拒绝
+
+
+### 设置免密登录
+
+1. `[user@A ~]ssh-keygen -t rsa -P ''`, 在A机下生成公钥/私钥对
+2. 用scp复制 把A机下的id_rsa.pub复制到B机下，在B机的.ssh/authorized_keys文件里
+  - `[user@A ~]scp ~/.ssh/id_rsa.pub userName@target:/home/userName/.ssh/authorized_keys`
+3. 权限设置,在 B 机器上
+  - `[user@B ~]$ chmod 600 ~/.ssh/authorized_keys`
