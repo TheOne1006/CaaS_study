@@ -2,6 +2,8 @@
 
 ## 安装
 
+[使用教程](https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.2.md)
+
 1. 需要安装 virtualbox
 2. <http://www.vagrantup.com/downloads.html> 下载相关版本的的软件
 3. 检测是否安装成功 尝试命令`$ vagrant`
