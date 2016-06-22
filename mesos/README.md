@@ -13,16 +13,16 @@ Mesos是Apache下的开源 __分布式资源管理框架__ ，它被称为是分
 
 ### mesos 概述与使用
 
-1. [X] 开源集群管理工具
-2. [X] 分布式系统内核  
+1. [x] 开源集群管理工具
+2. [x] 分布式系统内核  
     - 使用了与 Linux 内核相同的原则构建
     - 与 Linux 内核相比，提供了不同层面的抽象
     - mesos 内核运行在 __每一台机器__ 上,为应用提供api
-3. [X] 有效的资源隔离和共享
+3. [x] 有效的资源隔离和共享
     - 隔离
     - 共享
-4. [X] 可扩展到 10,000 个节点
-5. [X] 基于 zookeeper 的容错机制
+4. [x] 可扩展到 10,000 个节点
+5. [x] 基于 zookeeper 的容错机制
     - 使得 mesos 是一个高可用高容错的机制
 6. [ ] 支持 Docker 容器
 7. [ ] 任务隔离
@@ -69,7 +69,7 @@ mesos 实现了两级调度架构
 
 ## Mesos 工作流程
 
-![](images/mesos_work_flow.jpg)
+![mesos_work_flow](/images/mesos_work_flow.jpg)
 
 - 第一步,Slave1 向 Master 汇报可用资源(如4cpu, 4gb 内存).
 - 然后, Master 触发分配策略模块
