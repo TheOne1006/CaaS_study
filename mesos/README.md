@@ -10,6 +10,16 @@ Mesos是Apache下的开源 __分布式资源管理框架__ ，它被称为是分
 - 资源隔离
 - 容错
 
+### Question
+
+- 动态设置slave 的属性？
+  > mesos-slave 启动时 增加 `--attributes="rack:r1,attr1:val1"` 参数
+
+- 获取集群信息？
+- 踢出已丢失的slave？
+- 查看当前master？
+- 隔离机制(isolation)?
+
 
 ### mesos 概述与使用
 
