@@ -51,7 +51,7 @@ MESOS:
 
 ## Mesos 调度架构
 
-![](images/mesos_framework.jpg)
+![](/images/mesos_framework.jpg)
 
 mesos 实现了两级调度架构
 
@@ -59,7 +59,7 @@ mesos 实现了两级调度架构
   - 集群由物理(虚拟)服务组成,用于运行应用程序的任务.如 hadoop
   - Master 任务1: 协调 __全部__ 的 Slave,
   - Master 任务2: 确定每个节点的可用资源,聚合计算跨节点所有可用资源报告,
-  - Master 任务3: 并且向注册到 Master 的 Framework (这里应该是指 scheduler??) 发出资源邀约. framework 可以根据应用的需求 选择/拒绝 master 的资源邀约.
+  - Master 任务3: 并且向注册到 Master 的 Framework 发出资源邀约. framework 可以根据应用的需求 选择/拒绝 master 的资源邀约.
   - Master 任务4: 一旦(framewoke scheduler) 接收邀约, Master 即协调 Slave 和 Framework 调度参与节点上任务,并在容器中执行, 以使多中类型的任务,可以在同一节点运行
 - Framework 包括调度和执行器（红色虚线) 第二级
   - 每个节点上都会运行执行器
@@ -69,7 +69,7 @@ mesos 实现了两级调度架构
 
 ## Mesos 工作流程
 
-![mesos_work_flow](/images/mesos_work_flow.jpg)
+![mesos_work_flow](/images/architecture-example.jpg)
 
 - 第一步,Slave1 向 Master 汇报可用资源(如4cpu, 4gb 内存).
 - 然后, Master 触发分配策略模块

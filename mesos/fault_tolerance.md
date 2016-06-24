@@ -4,19 +4,19 @@
 Mesos
 ================
 
-> 定义: 
+> 定义:
     容错是数据中心操作系统十分重要的需求. 在发生故障的情况下仍然能保值功能的正常运行时大规模系统必不可少的能力。
 
 Mesos 有三种容错情况需要考虑: 机器宕机、Mesos进程bug 和 升级。
 
 
-### 当Mesos Slave 主机宕机
+### 当 Mesos Slave 主机宕机
 
 当 mesos slave 宕机时，mesos master 会发现宕机的情况，并给框架(framework) 发送一个 该slave 宕机事件。
 框架可以将当前运行在该 slave 上的任务重新调度到其他健康的slave 上。  
 
 当机器被修复，并且 slave 进程重新启动恢复到健康时，slave 会向master 注册并在此成为 mesos 集群中的一员。  
- 
+
 ？？ 在发生 slave 进程错误或者 slave 升级时， slave进程可能在一段时间内不可用，但是在 slave 上的 执行器不会受到影响，
 slave 进程在重启后会 __恢复__ 这些任务, 这一步也被称为 slave 恢复。  
 
@@ -71,9 +71,3 @@ Mesos 组件一旦和 __ZooKeeper__ 断开事件超过了配置的事件，Mesos
     - 如果当前 master 是主,则它自己终止。需要管理人员手动启动并将其以守护master形式运行
     - 如果当前 master 是守护模式, 则它只需要等待和 ZooKeeper 重新连接
 - 由于网络隔离导致 slave 无法和当前 master 通信, 那么 slave 的健康检查会失败,master 会将 slave 设置为为激活状态，未激活的slave 将不会像master 重新注册，并会被之后的消息要求主动关闭，该slave 上的任务都会被标记为 LOST , 框架将会对这些任务进行后续处理。
-
-
-
-
-
-

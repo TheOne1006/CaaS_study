@@ -19,4 +19,7 @@
     - aria2c 支持断点续传
 
 ## 参考资料
-<https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.2.md>
+安装: <https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.2.md>  
+服务测试: <http://www.cnblogs.com/ee900222/p/docker_2.html>
+
+

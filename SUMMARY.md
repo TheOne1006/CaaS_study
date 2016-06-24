@@ -1,6 +1,7 @@
 # Summary
 
 * mesos
+  * [分布式实践](/mesos/distributed.md)
   * [mesos 简介](/mesos/README.md)
   * [mesos 安装](/mesos/install.md)
   * [mesos 容错](/mesos/fault_tolerance.md)

@@ -9,12 +9,19 @@ Chronos web UI on: http://ip:8081
 vagrant ssh
 ```
 
+### Question
 
-### test
+1. 设置 slave 的属性
+2. 设置 指定端口
+3. 选择指定机器
 
-nginx.json
-```json
-{
+
+### test1 docker start
+
+nginx-start.sh
+```bash
+#!/bin/bash
+curl -X POST http://127.0.0.1:8080/v2/apps -H Content-Type: application/json -d '{
  "id":"nginx",
  "cpus":0.2,
  "mem":20.0,
@@ -23,18 +30,28 @@ nginx.json
  "container": {
    "type":"DOCKER",
    "docker": {
-     "image": "nginx",
+     "image": "index.docker.io/library/nginx",
      "network": "BRIDGE",
      "portMappings": [
         {"containerPort": 80, "hostPort": 0,"servicePort": 0, "protocol": "tcp" }
       ]
     }
   }
-}
+}'
 ```
 
-nginx-start.sh
-```bash
-curl -X POST http://127.0.0.1:8080/v2/apps -d @nginx.json -H "Content-type: application/json"
-```
 
+#### test2 new Framework
+
+1. 各节点上安装netcat
+2. 在Marathon页面，点击“Create Application”创建任务
+    - command： while true; do ( echo "HTTP/1.0 200 Ok"; echo; echo "Hello World" ) | nc -l $PORT; done
+
+
+
+#### 连接外部slave
+
+test in slave1
+```
+sudo /usr/sbin/mesos-slave --master=zk://zoo1:2181/mesos --log_dir=/var/log/mesos --isolation=cgroups/cpu,cgroups/mem --containerizers=mesos --executor_registration_timeout=5mins --work_dir=/tmp/mesos
+```
